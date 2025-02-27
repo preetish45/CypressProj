@@ -1,0 +1,33 @@
+name: Cypress Tests
+
+on: workflow_dispatch
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
+      # Upload screenshots on failure
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v2
+        if: failure()  # This step only runs if there's a failure
+        with:
+         name: cypress-screenshots
+         path: cypress/screenshots
+
+     # Upload videos
+      - name: Upload videos
+        uses: actions/upload-artifact@v2
+        if: always()  # This step always runs
+        with:
+         name: cypress-videos
+         path: cypress/videos
