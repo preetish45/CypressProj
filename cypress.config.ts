@@ -27,6 +27,9 @@ requestTimeout: 10000,
 pageLoadTimeout: 40000,
 viewportWidth: 1920,
 viewportHeight: 1080,
+projectId: 'dc6111',
+chromeWebSecurity: false,
+
   e2e: {
     specPattern: '**/*.{feature,spec.ts}',
     setupNodeEvents,

@@ -5,6 +5,8 @@ on: workflow_dispatch
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,4 +17,8 @@ jobs:
         with:
           build: npx cypress info
           config-file: cypress.config.ts
-          command:  npx cypress run --spec cypress/features/Products_Supported.feature --browser chrome
+          command:  npx cypress run --spec cypress/features/Products_Supported.feature --browser chrome --record
+        env:
+            # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+            # in GitHub repo → Settings → Secrets → Actions
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
