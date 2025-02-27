@@ -10,10 +10,9 @@ jobs:
         uses: actions/checkout@v4
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./cypress
-          build: npm run build
-          start: npm start
-          browser: chrome
+          build: npx cypress info
+          config-file: cypress.config.ts
+          command:  npx cypress run --spec features/Products_Supported.feature --browser chrome
