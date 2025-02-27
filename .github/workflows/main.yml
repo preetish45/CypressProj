@@ -1,6 +1,6 @@
 name: Cypress Tests
 
-on: push
+on: workflow_dispatch
 
 jobs:
   cypress-run:
@@ -15,4 +15,4 @@ jobs:
         with:
           build: npx cypress info
           config-file: cypress.config.ts
-          command:  npx cypress run --spec features/Products_Supported.feature --browser chrome
+          command:  npx cypress run --spec cypress/features/Products_Supported.feature --browser chrome
