@@ -20,5 +20,5 @@ Run tests via command line (in headless mode)
 
 # Github
 There is workflow defined within _github/workflows
-Cypress tests
+Cypress tests https://github.com/preetish45/CypressProj/blob/main/.github/workflows/main.yml
 
